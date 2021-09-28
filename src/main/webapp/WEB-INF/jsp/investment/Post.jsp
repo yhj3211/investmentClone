@@ -62,7 +62,6 @@
 						<textarea id="commentInput" class="form-control non-resize"></textarea>
 						<button id="commentBtn" type="button" class="btn btn-secondary ml-3">등록</button>
 					</div>
-						${likeCount }
 					<div class="mt-3 d-flex justify-content-between">
 						<div class="col-2">
 							<button id="likeBtn" type="button" class="btn btn-info" data-post-id="${post.id }">추천 ${likeCount }개</button>

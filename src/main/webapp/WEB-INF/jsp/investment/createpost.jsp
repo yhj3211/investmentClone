@@ -64,7 +64,7 @@
 				
 				<div class="d-flex justify-content-between">
 					<div>
-						<button type="button" class="btn mr-3 btn-secondary"><a class="text-white" href="/user/postlist">돌아가기</a></button>
+						<button type="button" class="btn mr-3 btn-secondary"><a class="text-white" href="/post/postlist">돌아가기</a></button>
 					</div>
 				
 					<div>
