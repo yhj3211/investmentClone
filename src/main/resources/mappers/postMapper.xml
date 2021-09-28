@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.yhj3211.investment.post.dao.PostDAO">
+ 
+ 	
+ <!-- 글 쓰기 -->
+ 	<insert id="insertPost"
+ 			parameterType="map">
+ 		
+ 		INSERT INTO `post`
+ 		(
+ 			`userId`
+ 			, `userName`
+ 			, `userNickname`
+ 			, `title`
+ 			, `content`
+ 			, `imagePath`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		) VALUES(
+ 			#{userId}
+ 			, #{userName}
+ 			, #{userNickname}
+ 			, #{title}
+ 			, #{content}
+ 			, #{imagePath}
+ 			, now()
+ 			, now()
+ 		)
+ 	
+ 	
+ 	</insert>
+ 
+ <!-- 이미지 없이 글 쓰기 -->
+ 
+ 	<insert id="insertUserNoneImage"
+ 			parameterType="map">
+ 	
+ 		INSERT INTO `post`
+ 			(
+ 				`userId`
+ 				, `userName`
+ 				, `userNickname`
+ 				, `title`
+ 				, `content`
+ 				, `createdAt`
+ 				, `updatedAt`
+ 			) VALUES(
+ 				#{userId}
+ 				, #{userName}
+ 				, #{userNickname}
+ 				, #{title}
+ 				, #{content}
+ 				, now()
+ 				, now()
+ 			)
+ 			
+	</insert>
+ 
+ 	<!-- postList가져오기 -->
+	<select id="selectPostList"
+			resultType="com.yhj3211.investment.post.model.Post">
+			
+		SELECT
+			`id`
+			, `userId`
+			, `userNickname`
+			, `userName`
+			, `title`
+			, `content`
+			, `imagePath`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`post`
+			
+	</select>
+ 	
+	<!-- 포스트 상세 -->
+	<select id="selectDetailPost"
+			resultType="com.yhj3211.investment.post.model.Post"
+			parameterType="map">
+
+	
+		SELECT
+			`id`
+			, `userId`
+			, `userName`
+			, `userNickname`
+			, `title`
+			, `content`
+			, `imagePath`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`post`
+		WHERE
+			`id` = #{id}
+			
+		
+	</select>
+
+
+ 	<!-- 검색목록 -->
+ 	<select id="selectSearchList"
+ 			resultType="com.yhj3211.investment.post.model.Post">
+ 		
+ 		SELECT
+ 			`id`
+ 			, `userId`
+ 			, `userNickname`
+ 			, `userName`
+ 			, `title`
+ 			, `content`
+ 			, `imagePath`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		FROM
+ 			`post`
+ 		WHERE
+ 			`title` like CONCAT('%',#{keyword},'%')
+ 			
+ 			
+ 	</select>
+
+
+	
+ 
+ </mapper>

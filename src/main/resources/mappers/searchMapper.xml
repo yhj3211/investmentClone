@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+     
+    <mapper namespace="com.yhj3211.investment.post.search.dao.SearchDAO">
+    
+         <!-- 검색 -->
+            <select id="getSearchList" 
+            		parameterType="string"
+            		resultType="com.yhj3211.investment.post.model.Post"
+            >
+            	SELECT
+            		`userId`
+            		, `userNickname`
+            		, `userName`
+            		, `title`
+            		, `createdAt`
+            		, `updatedAt`
+            	FROM
+            		`post`      		
+            	WHERE
+            		`title` like CONCAT('%',#{keyword},'%')
+            	
+
+            </select>
+    </mapper>
