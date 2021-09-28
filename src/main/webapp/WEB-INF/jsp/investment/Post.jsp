@@ -27,7 +27,7 @@
 			<nav class="navbar navbar-expand-md navbar-dark bg-dark">
 				<div>
 					<ul class="navbar-nav">
-						<li class="nav-item"><a class="nav-link" href="#">메인으로</a></li>
+						<li class="nav-item"><a class="nav-link" href="/post/postlist">메인으로</a></li>
 						<li class="nav-item"><a class="nav-link" href="#">메모</a></li>
 						<li class="nav-item"><a class="nav-link" href="#">바로가기</a></li>
 						<li class="nav-item"><a class="nav-link" href="#">주식 화면으로</a></li>
@@ -53,7 +53,26 @@
 				<hr>
 				
 				<!-- 내용 -->
-				<div style="height: 300px">${post.content }</div>
+				<div>
+					<div style="min-height:300px;">
+						${post.content }
+					</div>
+					
+					<!-- 이미지 파일 박스 -->
+					
+					<c:if test="${not empty post.imagePath  }">
+						<div>
+							<img src="${post.imagePath}" style="width:460px; height:250px;">
+						</div>
+					</c:if>
+					
+					<small>
+						<c:if test="${post.userId eq userId }">
+							<a href="#" id="deletePostBtn">글 삭제</a>
+						</c:if>
+					</small>
+					
+				</div>
 				<hr>
 				
 			<!-- 댓글 인풋 -->
@@ -77,6 +96,14 @@
 							<small class="ml-3">
 								${comment.createdAt }
 							</small>
+							
+							<c:if test="${comment.userId eq userId }">
+								<small>
+									<a href="#" id="deleteCommentBtn">
+										삭제
+									</a>
+							</small>
+							</c:if>
 						</div>
 						
 						<div class="mb-1">
@@ -101,6 +128,8 @@
 		$(".forPost").on("click", function(){
 			location.href="/post/postlist";
 		});
+		
+		//글 삭제 버튼 보이기 여부
 		
 		$("#commentBtn").on("click", function(){
 			var content = $("#commentInput").val().trim();
@@ -145,10 +174,49 @@
 				}, error:function(e){
 					alert("error");
 				}
-				
-				
 			});
 		});
+		
+		$("#deleteCommentBtn").on("click", function(){
+				var postId = ${post.id};	
+				
+			$.ajax({
+				type:"get",
+				url:"/comment/deleteComment",
+				data:{"postId":postId},
+				success:function(data){
+					if(data.result == "success"){
+						location.reload();
+					}else{
+						alert("댓글 삭제에 실패했습니다");
+					}
+				}, error:function(e){
+					alert("error");
+				}
+					
+			});
+		});
+		
+		$("#deletePostBtn").on("click", function(){
+			var postId = ${post.id};
+			
+			$.ajax({
+				type:"get",
+				url:"/post/deletePost",
+				data:{"postId":postId},
+				success:function(data){
+					if(data.result == "success"){
+						alert("글 삭제를 성공했습니다!");
+						location.href="/post/postlist";
+					}else{
+						alert("글 삭제에 실패했습니다!");
+						location.reload();
+					}
+					}, error:function(e){
+						alert("시스템 에러");
+					}
+		});
+	});
 	});
 
 </script>

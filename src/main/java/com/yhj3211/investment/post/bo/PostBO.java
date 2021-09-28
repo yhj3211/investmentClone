@@ -51,17 +51,18 @@ public class PostBO {
 		return postDAO.selectPostAll();
 	}
 
-	public List<PostWithComments> getPostList(int userId, String search){
+	public List<PostWithComments> getPostList(int userId, String keyword){
 		
 		List<Post> postList = null;
-		if(search != null) {
-			postList = postDAO.selectSearchList(search);
+		
+		if(keyword != null) {
+			postList = postDAO.selectSearchList(keyword);
 		}else {
 			postList = postDAO.selectPostList();
 		}
 		
 		List<PostWithComments> postWithCommentsList = new ArrayList<>();
-
+		
 		for(Post post:postList) {
 			List<Comment> commentList = commentBO.selectCommentList(post.getId());
 			PostWithComments postWithComments = new PostWithComments();
@@ -101,12 +102,25 @@ public class PostBO {
 		return postWithCommentsList;
 	}
 
-
 	//포스트 상세
 	public Post getDetailPost(int id) {
 		return postDAO.selectDetailPost(id);
 	}
 
+	//글 삭제
+	public boolean deletePost(int postId, int userId) {
+		
+		int count = postDAO.deletePost(postId, userId);
+		
+		if(count == 1) {
+			commentBO.deleteCommentByPostId(postId);
+			likeBO.deletelikeByPostId(postId);
+			return true;
+		}else {
+			return false;
+		}
+
+	}
 	
 	
 }

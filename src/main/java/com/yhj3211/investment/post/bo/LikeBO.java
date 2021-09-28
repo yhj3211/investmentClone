@@ -37,5 +37,9 @@ public class LikeBO {
 		return likeDAO.selectLikePostId(postId);
 	}
 	
+	//글 전체 삭제 중 좋아요 삭제
+	public int deletelikeByPostId(int postId) {
+		return likeDAO.deletelikeByPostId(postId);
+	}
 
 }

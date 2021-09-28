@@ -42,4 +42,25 @@ public class CommentRestController {
 		}
 		return result;
 	}
+	
+	//댓글 삭제
+		@GetMapping("/deleteComment")
+		public Map<String, String> deleteComment(@RequestParam("postId") int postId,
+													HttpServletRequest request){
+		
+				Map<String, String> result = new HashMap<>();
+				
+				HttpSession session = request.getSession();
+				int userId = (Integer)session.getAttribute("userId");
+				
+				int count = commentBO.deleteComment(postId, userId);
+				
+				if(count == 1) {
+					result.put("result", "success");
+				}else{
+					result.put("result", "fail");
+				}
+			return result;
+		}
+			
 }

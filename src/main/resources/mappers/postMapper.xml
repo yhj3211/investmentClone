@@ -122,11 +122,20 @@
  			`post`
  		WHERE
  			`title` like CONCAT('%',#{search},'%')
- 			
- 			
+ 	
  	</select>
-
-
+		
+		<!-- 글 삭제 -->
+	<delete id="deletePost"
+			parameterType="map">
 	
+		DELETE FROM
+			`post`
+		WHERE
+			`id` = #{postId}
+		AND
+			`userId` = #{userId}
+	
+	</delete>
  
  </mapper>

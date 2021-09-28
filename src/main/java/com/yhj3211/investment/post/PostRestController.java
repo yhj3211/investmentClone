@@ -83,6 +83,24 @@ public class PostRestController {
 		return result;
 	}
 	
-
+	//글 삭제
+		@GetMapping("/deletePost")
+		public Map<String, String> deletePost(@RequestParam("postId") int postId,
+												HttpServletRequest request){
+			
+			HttpSession session = request.getSession();
+			int userId = (Integer) session.getAttribute("userId");
+			
+			Map<String, String> result = new HashMap<>();
+			
+			boolean count = postBO.deletePost(postId, userId);
+			
+			if(count == true) {
+				result.put("result", "success");
+			}else {
+				result.put("result", "fail");
+			}
+			return result;
+		}
 	
 }

@@ -12,9 +12,8 @@ public interface LikeDAO {
 	public int selectCountLike(@Param("postId") int postId,
 								@Param("userId") int userId);
 
-	//좋아요 여부 확인
-	public int deletelike(@Param("postId") int postId,
-							@Param("userId") int userId);
+	//글 전체 삭제 중 좋아요 삭제
+	public int deletelikeByPostId(@Param("postId") int postId);
 	
 	//좋아요 갯수 가져오기
 	public int selectLikePostId(@Param("postId") int postId);

@@ -18,5 +18,14 @@ public interface CommentDAO {
 	
 	public List<Comment> selectCommentList(@Param("postId") int postId);
 
+	//댓글 삭제
+	public int deleteComment(@Param("postId") int postId,
+								@Param("userId") int userid);
+	
+	//글 전체 삭제 중 댓글 삭제
+	public int deleteCommentByPostId(@Param("postId") int postId);
+	
+	
+	
 }
 

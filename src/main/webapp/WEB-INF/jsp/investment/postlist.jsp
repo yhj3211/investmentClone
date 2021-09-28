@@ -26,13 +26,10 @@
 			<nav class="navbar navbar-expand-md navbar-dark bg-dark">
 				<div>
 					<ul class="navbar-nav">
-						<li class="nav-item"><a class="nav-link" href="#">메인으로</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">메모</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">바로가기</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">주식 화면으로</a></li>
+						<li class="nav-item"><a class="nav-link" href="/post/postlist">메인으로</a></li>
 					</ul>
 				</div>
-					<div style="width:68%" class="d-flex justify-content-end">
+					<div style="width:90%" class="d-flex justify-content-end">
 						<c:if test="${not empty userNickname }">
 							<img src="https://assets.coingecko.com/coins/images/1060/large/icon-icx-logo.png?1547035003" width="30px" class="mr-3"></img>
 							<div class="mr-3 text-white">${userNickname }님</div>		

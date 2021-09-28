@@ -32,4 +32,8 @@ public interface PostDAO {
 	public Post selectDetailPost(@Param("id") int id);
 
 	public Post selectPostAll();
+	
+	//글 삭제
+	public int deletePost(@Param("postId") int postId,
+							@Param("userId") int userId);
 }
