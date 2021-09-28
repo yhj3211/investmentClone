@@ -43,21 +43,21 @@
 	</div>
 
 	<section class="mt-3 ml-5">
-		<c:forEach var="postList" items="${postList}">
+		<c:forEach var="post" items="${postList}">
 		<div id="postBox" style="width:75%" class=" d-flex mt-5">
 				<div class="text-center d-flex align-items-center">
-					${likeCount }
+					${post.likecount }
 				</div>
 				<img src="https://assets.coingecko.com/coins/images/1060/large/icon-icx-logo.png?1547035003" class="ml-3" style="height:50px">
 			<div class="ml-3">
 				<div>
-					<a href="/post/detail_post?id=${postList.post.id }">
-						${postList.post.title }
+					<a href="/post/detail_post?id=${post.post.id }">
+						${post.post.title }
 					</a>
 				</div>
 				<div>
-					<small>${postList.post.createdAt }</small>
-					<small class="ml-3">${postList.post.userNickname }</small>
+					<small>${post.post.createdAt }</small>
+					<small class="ml-3">${post.post.userNickname }</small>
 				</div>
 			</div>
 		
