@@ -121,7 +121,7 @@
  		FROM
  			`post`
  		WHERE
- 			`title` like CONCAT('%',#{keyword},'%')
+ 			`title` like CONCAT('%',#{search},'%')
  			
  			
  	</select>

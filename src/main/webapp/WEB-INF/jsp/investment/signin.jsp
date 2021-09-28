@@ -23,7 +23,7 @@
 					
 					<form type="post">
 					<input type="text" id="loginIdInput" class="form-control mt-3" placeholder="아이디">
-					<input type="text" id="passwordInput" class="form-control mt-3" placeholder="패스워드">
+					<input type="password" id="passwordInput" class="form-control mt-3" placeholder="패스워드">
 					</form>
 					<button id="loginBtn" type="submit" class="btn btn-success btn-block mt-3">로그인</button>
 					<div class="mt-3 text-right" ><a href="/user/sign_up">회원가입</a></div>

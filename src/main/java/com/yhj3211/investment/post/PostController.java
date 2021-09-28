@@ -39,11 +39,13 @@ public class PostController {
 	//전체목록
 		@GetMapping("/postlist")
 		public String postListView(HttpServletRequest request,
-									Model model) {
+									Model model,
+									@RequestParam(value="search", required=false) String search) {
+			
 			HttpSession session = request.getSession();
 			
 			int userId = (Integer)session.getAttribute("userId");
-			List<PostWithComments> postList = postBO.getPostList(userId);
+			List<PostWithComments> postList = postBO.getPostList(userId, search);
 			
 			model.addAttribute("postList", postList);
 			return "/investment/postlist";
@@ -67,21 +69,5 @@ public class PostController {
 			return "investment/Post";
 			
 		}
-		    
-		//검색
-		@GetMapping("/search")
-		    public String search(HttpServletRequest request,
-		    						Model model){
-
-				String keyword = (String)request.getAttribute("keyword");
-				request.setAttribute("keyword", keyword);
-				
-		    	List<Search> search = postBO.selectSearchList(keyword);
-		    	
-		    	model.addAttribute("search", search);
-		    	
-		    	
-		    	//브라우저 화면
-				return "investment/postlist";
-		    }
+		
 }

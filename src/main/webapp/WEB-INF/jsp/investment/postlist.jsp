@@ -71,9 +71,9 @@
 	
 	</section>
 	<div class="con">
-		<form name="searchForm" method="get" action="/post/search">
+		<form name="searchForm" method="get" action="/post/postlist">
 	        <div class="d-flex justify-content-center mt-5" style="height:30px">
-	                <input name="keyword" type="text" class="col-3 form-control" placeholder="검색어를 입력하세요" value="${keyword }">
+	                <input name="search" type="text" class="col-3 form-control" placeholder="검색어를 입력하세요" value="${search }">
 	                <input type="submit" id="searchBtn" class="btn btn-secondary" value="검색">
 	        </div>
     	</form>

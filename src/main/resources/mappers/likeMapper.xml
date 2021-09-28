@@ -51,7 +51,7 @@
 	
 	</select>
 	
-	<select id="deleteLike"
+	<delete id="deleteLike"
 			parameterType="map">
 	
 		DELETE FROM `like`
@@ -60,6 +60,6 @@
 		AND
 			`userId` = #{userId}	
 		
-	</select>
+	</delete>
 	
  </mapper>

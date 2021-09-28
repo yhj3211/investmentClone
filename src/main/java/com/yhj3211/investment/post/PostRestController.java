@@ -69,6 +69,12 @@ public class PostRestController {
 		int likeCount = likeBO.getLikeCount(postId);
 		boolean isLike = likeBO.like(userId, postId);
 		
+		if(likeBO.existLike(postId, userId) == true) {
+			isLike = false;
+		}else {
+			isLike = true;
+		}
+		
 		Map<String, Object> result = new HashMap<>();
 		
 		result.put("like", isLike);

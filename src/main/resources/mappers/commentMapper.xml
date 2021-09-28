@@ -36,7 +36,7 @@
  		SELECT
  			`id`
  			, `postId`
- 			, `userId`
+ 			, `userId`	
  			, `userNickname`
  			, `content`
  			, `createdAt`

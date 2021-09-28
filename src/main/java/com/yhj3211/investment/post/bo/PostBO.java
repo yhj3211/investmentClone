@@ -51,12 +51,17 @@ public class PostBO {
 		return postDAO.selectPostAll();
 	}
 
-	public List<PostWithComments> getPostList(int userId){
+	public List<PostWithComments> getPostList(int userId, String search){
 		
-		List<Post> postList = postDAO.selectPostList();
+		List<Post> postList = null;
+		if(search != null) {
+			postList = postDAO.selectSearchList(search);
+		}else {
+			postList = postDAO.selectPostList();
+		}
+		
 		List<PostWithComments> postWithCommentsList = new ArrayList<>();
-		
-		
+
 		for(Post post:postList) {
 			List<Comment> commentList = commentBO.selectCommentList(post.getId());
 			PostWithComments postWithComments = new PostWithComments();
@@ -95,11 +100,7 @@ public class PostBO {
 		}
 		return postWithCommentsList;
 	}
-	
 
-	public List<Search> selectSearchList(String keyword) {
-		return postDAO.selectSearchList(keyword);
-	}
 
 	//포스트 상세
 	public Post getDetailPost(int id) {
