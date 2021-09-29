@@ -102,5 +102,25 @@ public class PostRestController {
 			}
 			return result;
 		}
+		
+	//글 수정
+		@PostMapping("/updatePost")
+		public Map<String, String> updatePost(@RequestParam("title") String title,
+												@RequestParam("content") String content,
+												@RequestParam("postId") int postId,
+												@RequestParam(required=false) MultipartFile file,
+												HttpServletRequest request){
+			
+			int count = postBO.updatePost(title, content, file, postId);
+			Map<String, String> result = new HashMap<>();
+			
+			if(count == 1) {
+				result.put("result", "success");
+			}else {
+				result.put("result", "fail");
+			}
+			return result;
+		}
+		
 	
 }

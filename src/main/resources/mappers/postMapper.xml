@@ -36,7 +36,7 @@
  
  <!-- 이미지 없이 글 쓰기 -->
  
- 	<insert id="insertUserNoneImage"
+ 	<insert id="insertPostNoneImage"
  			parameterType="map">
  	
  		INSERT INTO `post`
@@ -137,5 +137,32 @@
 			`userId` = #{userId}
 	
 	</delete>
+ 
+ 
+ <!-- 글 수정 -->
+ 	<update id="updatePost"
+ 			parameterType="map">
+ 	
+ 		UPDATE `post`
+ 		SET 
+ 			`title` = #{title},
+ 			`content` = #{content},
+ 			`imagePath` = #{imagePath}
+ 		WHERE
+ 			`id` = #{postId}
+ 	</update>
+ 
+ <!-- 이미지 없이 글 수정 -->
+ 	<update id="updatePostNontImage"
+ 			parameterType="map"> 
+ 		
+ 		UPDATE `post`
+ 		SET 
+ 			`title` = #{title},
+ 			`content` = #{content}
+ 		WHERE
+ 			`id` = #{postId}
+ 	</update>
+ 
  
  </mapper>

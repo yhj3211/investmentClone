@@ -19,7 +19,7 @@ public interface PostDAO {
 							@Param("content") String content,
 							@Param("imagePath") String imagePath);
 	
-	public int insertUserNoneImage(@Param("userId") int userId,
+	public int insertPostNoneImage(@Param("userId") int userId,
 									@Param("userName") String userName,
 									@Param("userNickname") String userNickname,
 									@Param("title") String title,
@@ -36,4 +36,16 @@ public interface PostDAO {
 	//글 삭제
 	public int deletePost(@Param("postId") int postId,
 							@Param("userId") int userId);
+	
+	//글 수정
+	public int updatePost(@Param("title") String title,
+							@Param("content") String content,
+							@Param("imagePath") String imagePath,
+							@Param("postId") int postId);
+	
+	public int updatePostNontImage(@Param("title") String title,
+							@Param("content") String content,
+							@Param("postId") int postId);
+
+
 }

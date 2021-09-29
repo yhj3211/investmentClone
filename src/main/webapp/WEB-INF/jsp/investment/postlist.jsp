@@ -76,10 +76,13 @@
     	</form>
 	</div>
 		<div class="mt-5" class="d-flex mr-3">
-			<button type="button" class="ml-3 btn justify-content-end" onclick="location.href=`/user/create_Post`">글 쓰기</button>
+			<button type="button" class="ml-3 btn justify-content-end" onclick="location.href=`/post/create_Post`">글 쓰기</button>
 		</div>
 	<c:import url="/WEB-INF/jsp/include/footer.jsp"/>
 	</div>
+	
+
+	
 	
 	<script>
 		$(document).ready(function(){

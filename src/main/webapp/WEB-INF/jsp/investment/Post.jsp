@@ -49,7 +49,19 @@
 				
 				<!-- 제목 -->
 				<hr>
-				<div class="mb-3 w-100">${post.title }</div>
+					<div class="d-flex justify-content-between">
+						<div>${post.title }</div>
+						<c:if test="${post.userId eq userId }">
+							<div class="">
+								<a class="mr-2 text-danger" href="#" id="deletePostBtn">
+									글 삭제
+								</a>
+								<a class="text-dark" href="/post/adjust_Post?id=${post.id }" id="adjustPostBtn">
+									글 수정
+								</a>
+							</div>
+						</c:if>
+					</div>
 				<hr>
 				
 				<!-- 내용 -->
@@ -67,9 +79,7 @@
 					</c:if>
 					
 					<small>
-						<c:if test="${post.userId eq userId }">
-							<a href="#" id="deletePostBtn">글 삭제</a>
-						</c:if>
+						
 					</small>
 					
 				</div>
@@ -85,7 +95,7 @@
 						<div class="col-2">
 							<button id="likeBtn" type="button" class="btn btn-info" data-post-id="${post.id }">추천 ${likeCount }개</button>
 						</div>
-						<button type="button" class="forPost col-2 btn btn-info">목록으로</button>
+						<button id="postlistBtn" type="button" class="forPost col-2 btn btn-info">목록으로</button>
 					</div>
 				
 			<c:forEach var="comment" items="${commentList }">
@@ -121,6 +131,18 @@
 	</section>
 	
 </div>
+
+<!-- modal
+	<div class="modal fade" id="deletePostModal" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dailog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-body text-center">
+						<a href="#" id="deletePostBtn">삭제하기</a>
+				</div>
+			</div>
+		</div>
+	</div>
+-->
 
 <script>
 	$(document).ready(function(){
@@ -178,6 +200,7 @@
 		});
 		
 		$("#deleteCommentBtn").on("click", function(){
+	
 				var postId = ${post.id};	
 				
 			$.ajax({
@@ -198,6 +221,12 @@
 		});
 		
 		$("#deletePostBtn").on("click", function(){
+	
+
+			var result = confirm("정말로 삭제하겠습니까?");
+			
+			if(result){
+		
 			var postId = ${post.id};
 			
 			$.ajax({
@@ -215,8 +244,14 @@
 					}, error:function(e){
 						alert("시스템 에러");
 					}
-		});
+			});
+			}
+			else{
+				location.reload();
+			}
+		
 	});
+		
 	});
 
 </script>

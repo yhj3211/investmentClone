@@ -43,9 +43,5 @@ public class UserController {
 		return "/investment/signin";
 	}
 	
-	//글 작성 페이지
-	@GetMapping("/create_Post")
-	public String createPost() {
-		return "/investment/createpost";
-	}
+	
 }

@@ -3,6 +3,7 @@ package com.yhj3211.investment.post.bo;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -41,7 +42,7 @@ public class PostBO {
 	return postDAO.insertPost(userId, userName, userNickname, title, content, filePath);
 
 }else {
-	int count2 = postDAO.insertUserNoneImage(userId, userName, userNickname, title, content);
+	int count2 = postDAO.insertPostNoneImage(userId, userName, userNickname, title, content);
 	
 	return count2;
 }
@@ -121,6 +122,27 @@ public class PostBO {
 		}
 
 	}
+
+	//글 수정
+	public int updatePost(String title, String content, MultipartFile file, int postId) {
+		
+		if(file != null) {
+			FileManagerService filemanager = new FileManagerService();
+			
+			String filePath = filemanager.saveFile(postId, file);
+		
+		
+		if(filePath == null) {
+			return -1;
+		}
+		return postDAO.updatePost(title, content, filePath, postId);
+		}else {
+			int count2 = postDAO.updatePostNontImage(title, content, postId);
+			
+			return count2;
+		}
+	}
+
 	
 	
 }

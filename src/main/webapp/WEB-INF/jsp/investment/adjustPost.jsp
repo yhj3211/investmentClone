@@ -24,7 +24,7 @@
 			<nav class="navbar navbar-expand-md navbar-dark bg-dark">
 				<div>
 					<ul class="navbar-nav">
-						<li class="nav-item"><a class="nav-link" href="#">메인으로</a></li>
+						<li class="nav-item"><a class="nav-link" href="/post/postlist">메인으로</a></li>
 						<li class="nav-item"><a class="nav-link" href="#">메모</a></li>
 						<li class="nav-item"><a class="nav-link" href="#">바로가기</a></li>
 						<li class="nav-item"><a class="nav-link" href="#">주식 화면으로</a></li>
@@ -40,7 +40,7 @@
 				</nav>
 	</div>
 				
-		<form method="get">
+	<form method="post" action="/post/updatePost"> 
 	<section class="mt-5 d-flex justify-content-center">
 		<!-- 바깥 틀 -->
 		<div id="inputCard" class="card border border-radius w-75">
@@ -58,27 +58,25 @@
 			
 			<!-- 파일 첨부, 입력 버튼 -->
 			<div class="d-flex justify-content-between mt-3">
-				<div>
+				<div class="ml-3">
 					<input id="fileInput" type="file">
 				</div>
 				
 				<div class="d-flex justify-content-between">
 					<div>
-						<button type="button" class="btn mr-3 mb-2 btn-secondary"><a class="text-white" href="/post/postlist">돌아가기</a></button>
+						<button id="postListBtn" type="button" class="mb-2 btn mr-3 btn-secondary">돌아가기</button>
 					</div>
 				
 					<div>
-						<button id="inputBtn" type="button" class="mb-2 btn btn-secondary">글 쓰기</button>
+						<button id="updatePostBtn" type="button" class="mb-2 mr-2 btn btn-secondary">글 쓰기</button>
 					</div>
 				</div>
 			</div>
 		</div>
-			
 			<!-- /파일 첨부, 입력 버튼 -->
 		<!-- /바깥 틀 -->
-	</section>			
-		</form>
-			
+	</section>
+			</form>
 		<div class="mt-5"></div>	
 			
 		<c:import url="/WEB-INF/jsp/include/footer.jsp" />
@@ -87,10 +85,16 @@
 	<script>
 		$(document).ready(function(){
 			
-			$("#inputBtn").on("click", function(){
+			$("#postListBtn").on("click", function(){
+				location.href="/post/postlist"
 				
+			});
+			
+			$("#updatePostBtn").on("click", function(){
+				
+			var postId = ${post.id};
 			var content = $("#contentInput").val().trim();
-			var title = $("#titleInput").val();
+			var title = $("#titleInput").val().trim();
 			
 			if(title == "" || title == null){
 				alert("제목을 입력해주세요");
@@ -113,17 +117,17 @@
 	
 			$.ajax({
 				enctype: 'multipart/form-data',
-				type:"post",
-				url:"/post/create",
+				type:"POST",
+				url:"/post/updatePost",
 				processData: false,
 				contentType: false,
 				data:formData,
 				success:function(data){
 					if(data.result == "success"){
-						alert("글 작성이 완료됐습니다");
-						location.href="/post/postlist";
+						alert("글 수정이 완료됐습니다");
+						location.href="/post/detail_post?id=${post.id}";
 					}else{
-						alert("글 작성에 실패했습니다");
+						alert("글 수정에 실패했습니다");
 					}
 				}, error:function(e){
 					alert("시스템 에러");

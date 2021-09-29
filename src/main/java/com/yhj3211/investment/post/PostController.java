@@ -69,5 +69,23 @@ public class PostController {
 			return "investment/Post";
 			
 		}
+
+	//글 작성 페이지
+		@GetMapping("/create_Post")
+		public String createPost() {
+			return "/investment/createpost";
+		}
+		
+	//글 수정 페이지
+		@GetMapping("/adjust_Post")
+		public String adjustPost(@RequestParam("id") int id,
+									Model model){
+			
+			Post post = postBO.getDetailPost(id);
+			model.addAttribute("post", post);
+			
+			
+			return "/investment/adjustPost";
+		}
 		
 }
