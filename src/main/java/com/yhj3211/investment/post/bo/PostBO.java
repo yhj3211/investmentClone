@@ -124,20 +124,18 @@ public class PostBO {
 	}
 
 	//글 수정
-	public int updatePost(String title, String content, MultipartFile file, int postId) {
+	public int updatePost(int userId, String title, String content, MultipartFile file, int id) {
 		
 		if(file != null) {
 			FileManagerService filemanager = new FileManagerService();
 			
-			String filePath = filemanager.saveFile(postId, file);
-		
-		
-		if(filePath == null) {
-			return -1;
-		}
-		return postDAO.updatePost(title, content, filePath, postId);
+			String filePath = filemanager.saveFile(userId, file);
+			if(filePath == null) {
+				return -1;
+			}
+		return postDAO.updatePost(title, content, filePath,userId, id);
 		}else {
-			int count2 = postDAO.updatePostNontImage(title, content, postId);
+			int count2 = postDAO.updatePostNontImage(title, content, userId, id);
 			
 			return count2;
 		}

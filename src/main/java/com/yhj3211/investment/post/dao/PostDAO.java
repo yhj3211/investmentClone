@@ -41,11 +41,13 @@ public interface PostDAO {
 	public int updatePost(@Param("title") String title,
 							@Param("content") String content,
 							@Param("imagePath") String imagePath,
-							@Param("postId") int postId);
+							@Param("userId") int userId,
+							@Param("id") int id);
 	
 	public int updatePostNontImage(@Param("title") String title,
 							@Param("content") String content,
-							@Param("postId") int postId);
+							@Param("userId") int userId,
+							@Param("id") int id);
 
 
 }

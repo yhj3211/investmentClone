@@ -18,7 +18,6 @@ import com.yhj3211.investment.post.bo.LikeBO;
 import com.yhj3211.investment.post.bo.PostBO;
 
 
-
 @RestController
 @RequestMapping("/post")
 public class PostRestController {
@@ -107,11 +106,14 @@ public class PostRestController {
 		@PostMapping("/updatePost")
 		public Map<String, String> updatePost(@RequestParam("title") String title,
 												@RequestParam("content") String content,
-												@RequestParam("postId") int postId,
+												@RequestParam("id") int id,
 												@RequestParam(required=false) MultipartFile file,
 												HttpServletRequest request){
 			
-			int count = postBO.updatePost(title, content, file, postId);
+			HttpSession session = request.getSession();
+			int userId = (Integer) session.getAttribute("userId");
+			
+			int count = postBO.updatePost(userId, title, content, file, id);
 			Map<String, String> result = new HashMap<>();
 			
 			if(count == 1) {
@@ -121,6 +123,4 @@ public class PostRestController {
 			}
 			return result;
 		}
-		
-	
 }

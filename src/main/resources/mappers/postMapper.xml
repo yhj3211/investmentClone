@@ -149,7 +149,10 @@
  			`content` = #{content},
  			`imagePath` = #{imagePath}
  		WHERE
- 			`id` = #{postId}
+ 			`userId` = #{userId}
+ 		AND
+ 			`id` = #{id}
+ 		
  	</update>
  
  <!-- 이미지 없이 글 수정 -->
@@ -161,7 +164,9 @@
  			`title` = #{title},
  			`content` = #{content}
  		WHERE
- 			`id` = #{postId}
+ 			`userId` = #{userId}
+ 		AND
+ 			`id` = #{id}
  	</update>
  
  

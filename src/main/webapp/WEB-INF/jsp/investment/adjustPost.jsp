@@ -78,7 +78,7 @@
 	</section>
 			</form>
 		<div class="mt-5"></div>	
-			
+		
 		<c:import url="/WEB-INF/jsp/include/footer.jsp" />
 	</div>
 	
@@ -92,9 +92,9 @@
 			
 			$("#updatePostBtn").on("click", function(){
 				
-			var postId = ${post.id};
-			var content = $("#contentInput").val().trim();
-			var title = $("#titleInput").val().trim();
+			var id = ${post.id};
+			let content = $("#contentInput").val().trim();
+			let title = $("#titleInput").val().trim();
 			
 			if(title == "" || title == null){
 				alert("제목을 입력해주세요");
@@ -114,7 +114,8 @@
 			formData.append("file", $("#fileInput")[0].files[0]);
 			formData.append("content", content);
 			formData.append("title", title);
-	
+			formData.append("id", id);
+			
 			$.ajax({
 				enctype: 'multipart/form-data',
 				type:"POST",
