@@ -13,6 +13,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+
 	<div class="container">
 	
 	<header class="mt-3">
@@ -27,6 +28,7 @@
 				<div>
 					<ul class="navbar-nav">
 						<li class="nav-item"><a class="nav-link" href="/post/postlist">메인으로</a></li>
+						
 					</ul>
 				</div>
 					<div style="width:90%" class="d-flex justify-content-end">
@@ -70,7 +72,13 @@
 	<div class="con">
 		<form name="searchForm" method="get" action="/post/postlist">
 	        <div class="d-flex justify-content-center mt-5" style="height:30px">
-	                <input name="search" type="text" class="col-3 form-control" placeholder="검색어를 입력하세요" value="${search }">
+	        	
+	        		<select id="search" name="search">
+	        			<option value="title">제목</option>
+	        			<option value="Nickname">닉네임</option>
+	        		</select>
+	        
+	                <input name="keyword" type="text" class="col-3 form-control" placeholder="검색어를 입력하세요" value="${keyword }">
 	                <input type="submit" id="searchBtn" class="btn btn-secondary" value="검색">
 	        </div>
     	</form>
@@ -86,6 +94,7 @@
 	
 	<script>
 		$(document).ready(function(){
+			
 			
 		});
 	

@@ -52,12 +52,12 @@ public class PostBO {
 		return postDAO.selectPostAll();
 	}
 
-	public List<PostWithComments> getPostList(int userId, String keyword){
+	public List<PostWithComments> getPostList(int userId, String search, String keyword){
 		
 		List<Post> postList = null;
 		
 		if(keyword != null) {
-			postList = postDAO.selectSearchList(keyword);
+			postList = postDAO.selectSearchList(search, keyword);
 		}else {
 			postList = postDAO.selectPostList();
 		}

@@ -121,7 +121,26 @@
  		FROM
  			`post`
  		WHERE
- 			`title` like CONCAT('%',#{search},'%')
+ 			1=1
+ 	
+ 		<!-- 검색 조건이 null이 아니라면 검색조건에 따른 데이터 조회-->
+ 	
+ 		<if test="search != null">
+ 		
+ 			<!-- 검색 조건이 제목일 때 -->
+ 			<if test="search == 'title'">
+ 				and `title` like CONCAT('%', #{keyword}, '%')
+ 			</if>
+ 			
+ 			<!-- 검색 조건이 닉네임일 때 -->
+ 			<if test="search == 'nickName'">
+ 				and `userNickname` like CONCAT('%', #{keyword}, '%')
+ 			</if>
+ 			
+ 		</if>
+ 	
+ 			
+ 			
  	
  	</select>
 		

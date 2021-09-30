@@ -40,12 +40,13 @@ public class PostController {
 		@GetMapping("/postlist")
 		public String postListView(HttpServletRequest request,
 									Model model,
-									@RequestParam(value="search", required=false) String search) {
+									@RequestParam(value="search", required=false) String search,
+									@RequestParam(value="keyword", required=false) String keyword) {
 			
 			HttpSession session = request.getSession();
 			
 			int userId = (Integer)session.getAttribute("userId");
-			List<PostWithComments> postList = postBO.getPostList(userId, search);
+			List<PostWithComments> postList = postBO.getPostList(userId, search, keyword);
 			
 			model.addAttribute("postList", postList);
 			return "/investment/postlist";
@@ -88,4 +89,9 @@ public class PostController {
 			return "/investment/adjustPost";
 		}
 		
+		
+		@GetMapping("/test")
+		public String test() {
+			return "/investment/test";
+		}
 }

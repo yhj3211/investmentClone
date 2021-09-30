@@ -27,7 +27,8 @@ public interface PostDAO {
 	
 	public List<Post> selectPostList();
 
-	public List<Post> selectSearchList(@Param("search") String search);
+	public List<Post> selectSearchList(@Param("search") String search,
+										@Param("keyword") String keyword);
 	
 	public Post selectDetailPost(@Param("id") int id);
 
