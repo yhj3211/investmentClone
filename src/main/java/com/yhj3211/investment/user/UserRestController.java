@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.yhj3211.investment.user.bo.MessageBO;
 import com.yhj3211.investment.user.bo.UserBO;
 import com.yhj3211.investment.user.model.User;
 
@@ -23,6 +24,9 @@ public class UserRestController {
 
 	@Autowired
 	private UserBO userBO;
+	
+	@Autowired
+	private MessageBO messageBO;
 	
 	//회원가입
 	@PostMapping("/signup")
@@ -102,4 +106,21 @@ public class UserRestController {
 		return result;
 	}
 	
+	//메세지 보내기
+	@GetMapping("/sendMessage")
+	public Map<String, String> sendMessage(@RequestParam("sendUserId") int sendUserId,
+											@RequestParam("takeUserId") int takeUserId,
+											@RequestParam("content") String content){
+		
+		Map<String, String> result = new HashMap<>();
+		
+		int count = messageBO.sendMessage(sendUserId, takeUserId, content);
+		
+		if(count == 1) {
+			result.put("result", "success");
+		}else {
+			result.put("result", "fail");
+		}
+		return result;
+	}
 }

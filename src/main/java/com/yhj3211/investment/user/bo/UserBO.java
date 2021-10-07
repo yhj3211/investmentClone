@@ -40,4 +40,9 @@ public class UserBO {
 		return userDAO.nicknameDup(nickname);
 	}
 	
+	//유저 정보 가져오기
+	public User userInfo(String loginId) {
+		return userDAO.userInfo(loginId);
+	}
+	
 }

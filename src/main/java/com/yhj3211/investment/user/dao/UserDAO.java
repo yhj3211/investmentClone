@@ -25,4 +25,9 @@ public interface UserDAO {
 	//닉네임 중복확인
 	public int nicknameDup(@Param("nickname") String nickname);
 	
+	//유저 정보 가져오기
+	public User userInfo(@Param("loginId") String loginId);
+	
+	
+	
 }

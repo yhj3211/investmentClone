@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.yhj3211.investment.user.dao.MessageDAO">
+ 
+ 	<insert id="insertMessage"
+ 			parameterType="map">
+ 	
+ 		INSERT INTO `message`
+ 			(
+ 			`sendUserId`
+ 			, `takeUserId`
+ 			, `content`
+ 			, `createdAt`
+ 			)
+ 			VALUES
+ 			(
+ 			#{sendUserId}
+ 			, #{takeUserId}
+ 			, #{content}
+			, now()
+			)
+ 
+ 	</insert>
+ 
+ 	<select id="selectMessage"
+ 			resultType="com.yhj3211.investment.user.model.Message"
+ 			parameterType="map">
+ 		
+ 		SELECT 
+ 			`id`
+ 			, `sendUserId`
+ 			, `takeUserId`
+ 			, `content`
+ 			, `createdAt`
+ 		FROM
+ 			`message`
+ 		WHERE
+ 			`takeUserId` = #{userId}
+ 		ORDER BY `id` DESC
+ 	
+ 	</select>
+ 
+ 	<select id="getMessageList"
+ 			resultType="com.yhj3211.investment.user.model.Message"
+ 			parameterType="map">
+ 		SELECT
+ 			`id`
+ 			, `sendUserId`
+ 			, `takeUserId`
+ 			, `content`
+ 			, `createdAt`
+ 		FROM
+ 			`message`
+ 		ORDER BY `id` DESC
+ 	</select>
+ 
+ 
+ </mapper>

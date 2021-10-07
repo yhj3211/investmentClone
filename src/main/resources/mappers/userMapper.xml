@@ -81,5 +81,27 @@
  			
  	</select>
  	
+ 	<!-- 유저 정보 가져오기 -->
+ 		<select id="userInfo"
+ 				resultType="com.yhj3211.investment.user.model.User"
+ 				parameterType="map">
+ 				
+ 		SELECT
+ 			`id`
+ 			, `loginId`
+ 			, `password`
+ 			, `name`
+ 			, `email`
+ 			, `nickname`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		FROM
+ 			`user`
+ 		WHERE 
+ 			`loginId` = #{loginId}
+ 		
+ 		</select>
+ 	
+ 	
  
  </mapper>

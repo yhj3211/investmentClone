@@ -16,29 +16,37 @@
 
 	<div class="container">
 	
-	<header class="mt-3">
-		<div class="d-flex">
-			<h2 class="ml-3">코인모아</h2>
-		</div>
-	</header>
+	<c:import url="/WEB-INF/jsp/include/header.jsp" />
 	<hr>
 	
-	<div>
+	<div> 	
 			<nav class="navbar navbar-expand-md navbar-dark bg-dark">
-				<div>
-					<ul class="navbar-nav">
+				<div class="w-75">
+					<ul class="navbar-nav d-flex justify-content-between">	
 						<li class="nav-item"><a class="nav-link" href="/post/postlist">메인으로</a></li>
 						
+						<li class="nav-item"><a class="nav-link" href="#">메모</a></li>
+						
+						<li class="nav-item"><a class="nav-link" href="#">바로가기</a>
+							<ul class="d-none">
+								<li><a href="https://finance.naver.com/">네이버 금융</a></li>
+								<li><a href="http://finance.daum.net/">다음 금융</a></li>
+								<li><a href="https://coinone.co.kr/?__cf_chl_jschl_tk__=pmd_B37e7nUJNegUbcXnzNtxyoW.H2ohmVAoYpQ4QfQLYJQ-1632993277-0-gqNtZGzNAdCjcnBszQjR">코인원</a></li>
+							</ul>
+						</li>
+						
+						
+						<li class="nav-item"><a class="nav-link" href="/user/message">메세지</a></li>
 					</ul>
 				</div>
-					<div style="width:90%" class="d-flex justify-content-end">
+				<div style="width:68%" class="d-flex justify-content-end">
 						<c:if test="${not empty userNickname }">
 							<img src="https://assets.coingecko.com/coins/images/1060/large/icon-icx-logo.png?1547035003" width="30px" class="mr-3"></img>
-							<div class="mr-3 text-white">${userNickname }님</div>		
+							<div class="mr-3 text-white"><a href="/user/mypage" class="mr-1">${userNickname }</a>님</div>			
 							<a href="/user/sign_out">로그아웃</a>			
 						</c:if>
-					</div>
-				</nav>
+				</div>
+			</nav>
 	</div>
 
 	<section class="mt-3 ml-5">
@@ -56,7 +64,11 @@
 				</div>
 				<div>
 					<small>${post.post.createdAt }</small>
-					<small class="ml-3">${post.post.userNickname }</small>
+						<c:url var="IdUrl" value="user/message">
+							<c:param name="id" value="${post.post.userId }"/>
+							<c:param name="nickname" value="${post.post.userNickname }"/>
+						</c:url>
+						<small class="ml-3"><a href="/<c:out value="${IdUrl}"/>">${post.post.userNickname }</a></small>
 				</div>
 			</div>
 		
@@ -94,8 +106,7 @@
 	
 	<script>
 		$(document).ready(function(){
-			
-			
+		
 		});
 	
 	</script>
