@@ -1,5 +1,7 @@
 package com.yhj3211.investment.user.bo;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,8 +18,14 @@ public class MessageBO {
 		return messageDAO.insertMessage(sendUserId, takeUserId, content);
 	}
 	
-	public Message getMessage(int takeUserId) {
-		return messageDAO.getMessage(takeUserId);
+	public List<Message> getTakeMessageList(int userId){
+		List<Message> takeMessageList = messageDAO.selectTakeMessageList(userId);
+		return takeMessageList;
+	}
+	
+	public List<Message> getSendMessageList(int userId) {
+		List<Message> sendMessageList = messageDAO.selectSendMessageList(userId);
+		return sendMessageList;
 	}
 	
 }

@@ -35,7 +35,7 @@
 							</li>
 							
 							
-							<li class="nav-item"><a class="nav-link" href="/user/message"	>메세지</a></li>
+							<li class="nav-item"><a class="nav-link" href="/user/sendMessagePage">메세지</a></li>
 						</ul>
 					</div>
 					<div style="width:68%" class="d-flex justify-content-end">
@@ -48,7 +48,7 @@
 				</nav>
 		</div>
 
-		<section>
+		<section class="mb-5">
 				<div class="d-flex justify-content-center">
 					<div class="w-75 mt-3">
 						<div>
@@ -63,7 +63,8 @@
 				</div>
 		</section>
 
-	<c:import url="/WEB-INF/jsp/include/footer.jsp" />
+	<hr>
+	<c:import url="/WEB-INF/jsp/include/footer.jsp"/>
 	
 	</div>
 

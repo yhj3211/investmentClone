@@ -25,7 +25,8 @@
  
  	</insert>
  
- 	<select id="selectMessage"
+ 	<!-- 나한테 온 메세지 목록 -->
+ 	<select id="selectTakeMessageList"
  			resultType="com.yhj3211.investment.user.model.Message"
  			parameterType="map">
  		
@@ -43,7 +44,8 @@
  	
  	</select>
  
- 	<select id="getMessageList"
+ 	<!-- 내가 보낸 메세지 목록 -->
+ 	<select id="selectSendMessageList"
  			resultType="com.yhj3211.investment.user.model.Message"
  			parameterType="map">
  		SELECT
@@ -54,6 +56,8 @@
  			, `createdAt`
  		FROM
  			`message`
+ 		WHERE
+ 			`sendUserId` = #{userId}
  		ORDER BY `id` DESC
  	</select>
  

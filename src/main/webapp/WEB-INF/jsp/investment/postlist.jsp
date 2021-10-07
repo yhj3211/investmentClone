@@ -36,7 +36,7 @@
 						</li>
 						
 						
-						<li class="nav-item"><a class="nav-link" href="/user/message">메세지</a></li>
+						<li class="nav-item"><a class="nav-link" href="/user/sendMessagePage">메세지</a></li>
 					</ul>
 				</div>
 				<div style="width:68%" class="d-flex justify-content-end">

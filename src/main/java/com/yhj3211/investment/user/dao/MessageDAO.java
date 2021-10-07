@@ -1,5 +1,7 @@
 package com.yhj3211.investment.user.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -13,5 +15,9 @@ public interface MessageDAO {
 								@Param("takeUserId") int takeUserId,
 								@Param("content") String content);
 	
-	public Message getMessage(@Param("takeUserId") int takeUserId);	
+	//받은 메세지 목록
+	public List<Message> selectTakeMessageList(@Param("userId") int userId);
+	
+	//보낸 메세지 목록
+	public List<Message> selectSendMessageList(@Param("userId") int userId);
 }
