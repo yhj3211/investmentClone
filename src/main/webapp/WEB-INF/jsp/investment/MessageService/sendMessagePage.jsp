@@ -55,15 +55,17 @@
 				<button onclick="location.href='/user/sendMessagePage/'">보낸 메세지함</button>
 			</div>
 			
+			<h3>보낸 메세지</h3>
+			
 			<table class="table">
 				<tr>
-					<td>보낸이</td>
-					<td>내용</td>
-					<td>날짜</td>
+					<td class="col-3">받는 사람</td>
+					<td class="col-4">내용</td>
+					<td class="col-4">날짜</td>
 				</tr>
 			<c:forEach var="sendList" items="${sendMessageList }">
 				<tr>
-					<td><a href="/user/message?id=${user.id }">${user.nickname}</a></td>
+					<td><a href="/user/message?id=${user.id }">${sendList.takeUserNickname}</a></td>
 					<td>${sendList.content}</td>
 					<td>${sendList.createdAt }</td>
 				</tr>

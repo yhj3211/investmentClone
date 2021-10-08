@@ -4,10 +4,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
   	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="/static/css/style.css">
 <title>Insert title here</title>
@@ -71,9 +71,13 @@
 	<script>
 		$(document).ready(function(){
 			
+
+			
 			$("#sendBtn").on("click", function(){
 				var sendUserId = ${user.id};
 				var takeUserId = ${param.id};
+				var sendUserNickname = "${user.nickname}";
+				var takeUserNickname = "${param.nickname}";
 				var content = $("#contentInput").val().trim();
 				
 				if(takeUserId == "" || takeUserId == null){
@@ -86,10 +90,17 @@
 					return;
 				}
 				
+				if(takeUserId == sendUserId){
+					alert("자신에게는 메세지를 보낼 수 없습니다");
+					//크롬에선 location.href=() 괄호 형태로 진행했을 때 에러가 남
+					window.location.href="/post/postlist";
+					return;
+				}
 				$.ajax({
 					type:"get",
 					url:"/user/sendMessage",
-					data:{"takeUserId":takeUserId, "content":content, "sendUserId":sendUserId},
+					data:{"takeUserId":takeUserId, "content":content, "sendUserId":sendUserId, 
+							"sendUserNickname":sendUserNickname, "takeUserNickname":takeUserNickname},
 					success:function(data){
 						if(data.result == "success"){
 							alert("메시지 전송 완료");

@@ -14,8 +14,8 @@ public class MessageBO {
 	@Autowired
 	private MessageDAO messageDAO;
 	
-	public int sendMessage(int sendUserId, int takeUserId, String content) {
-		return messageDAO.insertMessage(sendUserId, takeUserId, content);
+	public int sendMessage(int sendUserId, int takeUserId, String content, String sendUserNickname, String takeUserNickname) {
+		return messageDAO.insertMessage(sendUserId, takeUserId, content, sendUserNickname, takeUserNickname);
 	}
 	
 	public List<Message> getTakeMessageList(int userId){
@@ -28,4 +28,8 @@ public class MessageBO {
 		return sendMessageList;
 	}
 	
+	//메세지 삭제
+	public int deleteMessage(int userId) {
+		return messageDAO.deleteMessage(userId);
+	}
 }

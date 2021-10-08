@@ -10,11 +10,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.yhj3211.investment.post.bo.PostBO;
-import com.yhj3211.investment.post.comment.model.PostWithComments;
+import com.yhj3211.investment.post.model.Post;
 import com.yhj3211.investment.user.bo.MessageBO;
 import com.yhj3211.investment.user.bo.UserBO;
+import com.yhj3211.investment.user.model.Message;
 import com.yhj3211.investment.user.model.User;
 
 @Controller
@@ -71,22 +73,55 @@ public class UserController {
 		return "/investment/mypage";
 	}
 	
-	//메세지페이지
+	//메세지 보내기 페이지
 	@GetMapping("/message")
 	public String messagePost(Model model,
 								HttpServletRequest request) {
 		
 		HttpSession session = request.getSession();
 		String loginId = (String)session.getAttribute("loginId");
-		int userId = (Integer)session.getAttribute("userId");
 		
-		List<PostWithComments> postList = postBO.getAllList(userId);
 		User user = userBO.userInfo(loginId);
 	
-		model.addAttribute("postList", postList);
 		model.addAttribute("user", user);
 		
-		return "/investment/messagePost";
+		return "/investment/MessageService/messagePost";
+	}
+	
+	//내가 보낸 메세지 페이지
+	@GetMapping("/sendMessagePage")
+	public String sendMessagePage(Model model,
+									HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();	
+		int sendUserId = (Integer)session.getAttribute("userId");
+		String loginId = (String)session.getAttribute("loginId");
+		
+		List<Message> sendMessageList = messageBO.getSendMessageList(sendUserId);
+		User user = userBO.userInfo(loginId);
+		
+		model.addAttribute("user", user);
+		model.addAttribute("sendMessageList", sendMessageList);
+		
+		return "/investment/MessageService/sendMessagePage";
+	}
+	
+	//내가 받은 메세지 페이지
+	@GetMapping("/takeMessagePage")
+	public String takeMessagePage(Model model,
+									HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		int takeUserId = (Integer)session.getAttribute("userId");
+		
+		List<Message> takeMessageList = messageBO.getTakeMessageList(takeUserId);
+		
+		Post post = postBO.getPostListAll();
+		
+		model.addAttribute("postList", post);
+		model.addAttribute("takeMessageList", takeMessageList);
+		
+		return "/investment/MessageService/takeMessagePage";
 	}
 	
 }

@@ -55,17 +55,21 @@
 				<button onclick="location.href='/user/sendMessagePage/'">보낸 메세지함</button>
 			</div>
 			
+			<h3>받은 메세지</h3>
+			
 			<table class="table">
 				<tr>
-					<td>보낸이</td>
-					<td>내용</td>
-					<td>날짜</td>
+					<td class="col-3">보낸 사람</td>
+					<td class="col-4">내용</td>
+					<td class="col-3">날짜</td>
+					<td class="col-3"></td>
 				</tr>
 			<c:forEach var="takeList" items="${takeMessageList }">
 				<tr>
-					<td><a href="/user/message?id=${user.id }">${takeList.sendUserId}</a></td>
+					<td><a href="/user/message?id=${user.id }">${takeList.sendUserNickname}</a></td>
 					<td>${takeList.content}</td>
 					<td>${takeList.createdAt }</td>
+					<td><a href="#" id="deleteHref" class="text-danger">메세지 삭제</a></td>
 				</tr>
 			</c:forEach>
 			</table>
@@ -77,8 +81,32 @@
 	
 	<script>
 		$(document).ready(function(){
-			var takeUserId = ${userId};
 			
+			$("#deleteHref").on("click", function(){
+				var result = confirm("정말로 삭제하겠습니까?");
+				//예를 눌렀을 때
+					if(result){
+						$.ajax({
+							type:"get",
+							url:"/user/deleteMessage",
+							data:{},
+							success:function(data){
+							if(data.result == "success"){
+								alert("삭제 성공");
+								location.reload();
+							}else{
+								alert("삭제 실패");
+							}
+						}, error:function(e){
+							alert("error");
+						}
+				});
+			//아니오를 눌렀을 때
+			}else{
+				location.reload();
+			}
+			
+		});
 		});
 	</script>
 </body>

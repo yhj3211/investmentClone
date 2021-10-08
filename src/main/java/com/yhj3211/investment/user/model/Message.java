@@ -8,6 +8,8 @@ public class Message {
 	private int sendUserId;
 	private int takeUserId;
 	private String content;
+	private String sendUserNickname;
+	private String takeUserNickname;
 	private Date createdAt;
 	public int getId() {
 		return id;
@@ -38,6 +40,18 @@ public class Message {
 	}
 	public void setCreatedAt(Date createdAt) {
 		this.createdAt = createdAt;
+	}
+	public String getSendUserNickname() {
+		return sendUserNickname;
+	}
+	public void setSendUserNickname(String sendUserNickname) {
+		this.sendUserNickname = sendUserNickname;
+	}
+	public String getTakeUserNickname() {
+		return takeUserNickname;
+	}
+	public void setTakeUserNickname(String takeUserNickname) {
+		this.takeUserNickname = takeUserNickname;
 	}
 	
 	

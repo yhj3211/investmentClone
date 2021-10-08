@@ -110,11 +110,13 @@ public class UserRestController {
 	@GetMapping("/sendMessage")
 	public Map<String, String> sendMessage(@RequestParam("sendUserId") int sendUserId,
 											@RequestParam("takeUserId") int takeUserId,
-											@RequestParam("content") String content){
+											@RequestParam("content") String content,
+											@RequestParam("sendUserNickname") String sendUserNickname,
+											@RequestParam("takeUserNickname") String takeUserNickname){
 		
 		Map<String, String> result = new HashMap<>();
 		
-		int count = messageBO.sendMessage(sendUserId, takeUserId, content);
+		int count = messageBO.sendMessage(sendUserId, takeUserId, content, sendUserNickname, takeUserNickname);
 		
 		if(count == 1) {
 			result.put("result", "success");
@@ -123,4 +125,24 @@ public class UserRestController {
 		}
 		return result;
 	}
+	
+	//메세지 삭제
+	@GetMapping("/deleteMessage")
+	public Map<String, String> deleteMessage(HttpServletRequest request){
+		
+		Map<String, String> result = new HashMap<>();
+		
+		HttpSession session = request.getSession();
+		int sendUserId = (Integer)session.getAttribute("userId");
+		
+		int count = messageBO.deleteMessage(sendUserId);
+		
+		if(count == 1) {
+			result.put("result", "success");
+		}else {
+			result.put("result", "fail");
+		}
+		return result;
+	}
+	
 }
