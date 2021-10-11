@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.yhj3211.investment.post.dao.HopeDAO">
+ 
+ 	<insert id="insertHope"
+ 			parameterType="map">
+ 		INSERT INTO `hope`
+ 		(
+ 			`userId`
+ 			, `userNickname`
+ 			, `content`
+ 			, `createdAt`
+ 		)
+ 		VALUES(
+ 			#{userId}
+ 			, #{userNickname}
+ 			, #{content}
+ 			, now()
+ 		)
+ 	
+ 	</insert>
+ 
+ 	<select id="selectHopeList"
+ 			resultType="com.yhj3211.investment.post.model.Hope"
+ 			parameterType="map">
+ 		
+ 		SELECT
+ 			*
+ 		FROM
+ 			`hope`
+ 	
+ 	</select>
+ 
+ </mapper>

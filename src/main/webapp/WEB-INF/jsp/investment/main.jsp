@@ -20,6 +20,19 @@
 			width:300px;
 			height:300px;
 		}
+		
+		#contentBox{
+			overflow:automysql;
+			min-width:100%;
+			max-height:500px;
+			border:1px solid;
+			}
+		
+		.img{
+			width:150px;
+			height:150px;
+		}
+			
 	</style>
 </head>
 <body>
@@ -65,15 +78,28 @@
 			
 			<div class="text-center">
 			
-				<h3>기도합시다</h3>
+				<h3>
+					<img class="img" src="https://search.pstatic.net/common/?src=http%3A%2F%2Fshop1.phinf.naver.net%2F20210805_238%2F16281124993662OrII_JPEG%2FS202108050418102847610ae7f20ac38_main.jpg&type=a340">
+					기도합시다
+					<img class="img" src="https://search.pstatic.net/common/?src=http%3A%2F%2Fimage.nmv.naver.net%2Fblog_2020_12_03_3210%2F5f5ee4a1-351d-11eb-8385-48df37ae3dc4_01.jpg&type=ofullfill340_600">	
+				</h3>
 				
 				<div>
-					${hopeList.content }
+					<div id="contentBox" class="form-control mb-3">
+						<c:forEach var="hope" items="${hopeList}">
+							<div class="mt-1 mb-1 border-radius d-flex">
+								<div class="ml-1 mr-1">
+									${hope.userNickname } :
+								</div>
+								<div>
+									${hope.content}
+								</div>
+							</div>
+						</c:forEach>
+					</div>
+						<input type="text" id="textInput" class="form-control" placeholder="기도를 남기세요!">	
 				</div>
-				
-				<input type="text" id="textInput" class="form-control">
-				
-				<button type="submit" class="btn btn-block">존버는 승리하리라</button>
+				<button id="submitBtn" type="submit" class="btn btn-block btn-info">존버는 승리하리라</button>
 				
 			</div>
 		
@@ -175,6 +201,30 @@
 		}); */
 	//	
 		
+	$(document).ready(function(){
+		$("#submitBtn").on("click", function(){
+			var content = $("#textInput").val().trim();
+			
+			$.ajax({
+				type:"get",
+				url:"/post/createHope",
+				data:{"content":content},
+				success:function(data){
+					if(data.result == "success"){
+						location.reload();
+					}else{
+						alert("기도 입력에 실패했습니다");
+						return;
+					}
+				}, error:function(e){
+					alert("error");
+					console.log("error");
+				}
+			});
+		});
+		
+	});
+	
 		</script>
 
 </body>
