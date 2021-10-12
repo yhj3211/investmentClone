@@ -15,7 +15,7 @@ public class FileManagerService {
 
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
-	private final String FILE_UPLOAD_PATH = "D:\\유승준\\파일 저장소";
+	private final String FILE_UPLOAD_PATH = "C:\\Users\\tlqdn\\OneDrive\\바탕 화면\\파일 저장소\\investment/";
 
 	//파일 업로드
 	

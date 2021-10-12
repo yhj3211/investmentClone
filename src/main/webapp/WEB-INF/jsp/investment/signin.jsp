@@ -49,9 +49,9 @@
 				data:{"loginId":loginId, "password":password},
 				success:function(data){
 					if(data.result == "success"){
-						location.href="/post/postlist";
+						location.href="/post/main";
 					}else{
-						alert("아이디 비밀번호를 확인해 주세요");
+						alert("아이디 혹은 비밀번호를 확인해 주세요");
 					}
 				}, error:function(e){
 					alert("시스템 에러");

@@ -19,33 +19,32 @@
 	<c:import url="/WEB-INF/jsp/include/header.jsp" />
 		
 		<div> 	
-				<nav class="navbar navbar-expand-md navbar-dark bg-dark">
-					<div class="w-75">
-						<ul class="navbar-nav d-flex justify-content-between">	
-							<li class="nav-item"><a class="nav-link" href="/post/postlist">메인으로</a></li>
-							
-							<li class="nav-item"><a class="nav-link" href="#">메모</a></li>
-							
-							<li class="nav-item"><a class="nav-link" href="#">바로가기</a>
-								<ul class="d-none">
-									<li><a href="https://finance.naver.com/">네이버 금융</a></li>
-									<li><a href="http://finance.daum.net/">다음 금융</a></li>
-									<li><a href="https://coinone.co.kr/?__cf_chl_jschl_tk__=pmd_B37e7nUJNegUbcXnzNtxyoW.H2ohmVAoYpQ4QfQLYJQ-1632993277-0-gqNtZGzNAdCjcnBszQjR">코인원</a></li>
-								</ul>
-							</li>
-							
-							
-							<li class="nav-item"><a class="nav-link" href="/user/sendMessagePage">메세지</a></li>
-						</ul>
-					</div>
-					<div style="width:68%" class="d-flex justify-content-end">
-							<c:if test="${not empty userNickname }">
-								<img src="https://assets.coingecko.com/coins/images/1060/large/icon-icx-logo.png?1547035003" width="30px" class="mr-3"></img>
-								<div class="mr-3 text-white"><a href="/user/mypage" class="mr-1">${userNickname }</a>님</div>			
-								<a href="/user/sign_out">로그아웃</a>			
-							</c:if>
-					</div>
-				</nav>
+			<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+				<div class="w-75">
+					<ul class="navbar-nav d-flex justify-content-between">	
+						<li class="nav-item"><a class="nav-link" href="/post/main">메인으로</a></li>
+						
+						<li class="nav-item"><a class="nav-link" href="/post/postlist">게시판</a></li>
+						
+						<li class="nav-item"><a class="nav-link" href="#">바로가기</a>
+							<ul class="d-none">
+								<li><a href="https://finance.naver.com/">네이버 금융</a></li>
+								<li><a href="http://finance.daum.net/">다음 금융</a></li>
+								<li><a href="https://coinone.co.kr/?__cf_chl_jschl_tk__=pmd_B37e7nUJNegUbcXnzNtxyoW.H2ohmVAoYpQ4QfQLYJQ-1632993277-0-gqNtZGzNAdCjcnBszQjR">코인원</a></li>
+							</ul>
+						</li>
+				
+						<li class="nav-item"><a class="nav-link" href="/user/takeMessagePage">메세지</a></li>
+					</ul>
+				</div>
+				<div style="width:68%" class="d-flex justify-content-end">
+						<c:if test="${not empty userNickname }">
+							<img src="https://assets.coingecko.com/coins/images/1060/large/icon-icx-logo.png?1547035003" width="30px" class="mr-3"></img>
+							<div class="mr-3 text-white"><a href="/user/mypage" class="mr-1">${userNickname }</a>님</div>			
+							<a href="/user/sign_out">로그아웃</a>			
+						</c:if>
+				</div>
+			</nav>
 		</div>
 
 		<section class="mb-5">
@@ -71,7 +70,6 @@
 	<script>
 		$(document).ready(function(){
 			
-
 			
 			$("#sendBtn").on("click", function(){
 				var sendUserId = ${user.id};
@@ -94,8 +92,8 @@
 					alert("자신에게는 메세지를 보낼 수 없습니다");
 					//크롬에선 location.href=() 괄호 형태로 진행했을 때 에러가 남
 					window.location.href="/post/postlist";
-					return;
 				}
+				
 				$.ajax({
 					type:"get",
 					url:"/user/sendMessage",

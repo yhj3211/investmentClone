@@ -10,4 +10,8 @@ spring:
       prefix: /WEB-INF/jsp/
       suffix: .jsp
     static-path-pattern: /static/**
+    
+  devtools:
+    livereload:
+      enabled: true
    

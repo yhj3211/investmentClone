@@ -14,13 +14,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.yhj3211.investment.post.bo.HopeBO;
 import com.yhj3211.investment.post.bo.LikeBO;
 import com.yhj3211.investment.post.bo.PostBO;
 import com.yhj3211.investment.post.comment.bo.CommentBO;
 import com.yhj3211.investment.post.comment.model.Comment;
 import com.yhj3211.investment.post.comment.model.PostWithComments;
+import com.yhj3211.investment.post.model.Hope;
 import com.yhj3211.investment.post.model.Post;
-import com.yhj3211.investment.post.model.Search;
+import com.yhj3211.investment.user.bo.UserBO;
 
 
 @RequestMapping("/post")
@@ -28,7 +30,13 @@ import com.yhj3211.investment.post.model.Search;
 public class PostController {
 
 	@Autowired
+	private HopeBO hopeBO;
+	
+	@Autowired
 	private PostBO postBO;
+	
+	@Autowired
+	private UserBO userBO;
 	
 	@Autowired
 	private CommentBO commentBO;
@@ -44,8 +52,8 @@ public class PostController {
 									@RequestParam(value="keyword", required=false) String keyword) {
 			
 			HttpSession session = request.getSession();
-			
 			int userId = (Integer)session.getAttribute("userId");
+			
 			List<PostWithComments> postList = postBO.getPostList(userId, search, keyword);
 			
 			model.addAttribute("postList", postList);
@@ -94,4 +102,15 @@ public class PostController {
 		public String test() {
 			return "/investment/test";
 		}
+		
+	//메인 페이지
+		@GetMapping("/main")
+		public String main(Model model) {
+			
+			List<Hope> hopeList = hopeBO.selectHopeList();
+			model.addAttribute(hopeList);
+			
+			return "investment/main";
+		}
+		
 }

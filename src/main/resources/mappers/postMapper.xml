@@ -30,7 +30,7 @@
  			, now()
  			, now()
  		)
- 	
+ 		
  	
  	</insert>
  
@@ -76,6 +76,7 @@
 			, `updatedAt`
 		FROM
 			`post`
+		ORDER BY `id` DESC
 			
 	</select>
  	
@@ -122,7 +123,6 @@
  			`post`
  		WHERE
  			1=1
- 	
  		<!-- 검색 조건이 null이 아니라면 검색조건에 따른 데이터 조회-->
  	
  		<if test="search != null">
@@ -138,9 +138,6 @@
  			</if>
  			
  		</if>
- 	
- 			
- 			
  	
  	</select>
 		
@@ -187,6 +184,30 @@
  		AND
  			`id` = #{id}
  	</update>
+ 
+ 
+ <!-- 총 게시글 갯수 -->
+ 	<select id="countPost"
+ 			resultType="int">
+ 			
+ 		SELECT
+ 			count(*)
+ 		FROM
+ 			`post`
+ 			
+ 	</select>
+
+ 	<select id="selectPostAll"
+ 			resultType="com.yhj3211.investment.post.model.Post">
+ 		
+ 		SELECT
+ 			*
+ 		FROM
+ 			`post`
+		WHERE
+			`userId` = #{sendUserId};	
+ 	</select>
+ 
  
  
  </mapper>

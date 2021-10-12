@@ -60,6 +60,10 @@ public class User {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
+	public Object getNickname(int sendUserId) {
+		// TODO Auto-generated method stub
+		return nickname;
+	}
     
     
 }

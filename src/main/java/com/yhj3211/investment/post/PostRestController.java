@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.yhj3211.investment.post.bo.HopeBO;
 import com.yhj3211.investment.post.bo.LikeBO;
 import com.yhj3211.investment.post.bo.PostBO;
 
@@ -22,6 +23,9 @@ import com.yhj3211.investment.post.bo.PostBO;
 @RequestMapping("/post")
 public class PostRestController {
 
+	@Autowired
+	private HopeBO hopeBO;
+	
 	@Autowired
 	private PostBO postBO;
 	
@@ -121,6 +125,27 @@ public class PostRestController {
 			}else {
 				result.put("result", "fail");
 			}
+			return result;
+		}
+		
+	//존버 소원 적기
+		@GetMapping("/createHope")
+		public Map<String, String> insertHope(HttpServletRequest request,
+												@RequestParam("content") String content){
+			
+				Map<String, String> result = new HashMap<>();
+				
+				HttpSession session = request.getSession();
+				int userId = (Integer)session.getAttribute("userId");
+				String userNickname = (String)session.getAttribute("userNickname");
+				
+				int count = hopeBO.insertHope(userId, userNickname, content);
+				
+				if(count == 1) {
+					result.put("result", "success");
+				}else {
+					result.put("result", "fail");
+				}
 			return result;
 		}
 }
