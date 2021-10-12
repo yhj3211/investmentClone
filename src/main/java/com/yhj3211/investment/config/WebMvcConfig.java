@@ -10,6 +10,6 @@ public class WebMvcConfig implements WebMvcConfigurer{
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/images/**")
-		.addResourceLocations("file:///C:\\Users\\tlqdn\\OneDrive\\바탕 화면\\파일 저장소\\investment/");
+		.addResourceLocations("file:/home/ec2-user/upload/");
 	}
 }
