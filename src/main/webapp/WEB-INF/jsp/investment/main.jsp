@@ -24,7 +24,6 @@
 		#contentBox{
 			overflow:automysql;
 			min-width:100%;
-			min-height:500px;
 			max-height:500px;
 			border:1px solid;
 			}
@@ -205,11 +204,6 @@
 	$(document).ready(function(){
 		$("#submitBtn").on("click", function(){
 			var content = $("#textInput").val().trim();
-			
-			if(content == "" || content == null){
-				alert("기도 내용을 입력해 주세요");
-				return;
-			}
 			
 			$.ajax({
 				type:"get",

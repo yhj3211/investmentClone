@@ -31,7 +31,6 @@
  			*
  		FROM
  			`hope`
- 		ORDER BY `id` DESC
  	
  	</select>
  
