@@ -10,7 +10,11 @@
 
 :clipboard: 마른달그램
 
+
+
 <hr>
+
+
 
 :computer: 프로젝트 개요
 
@@ -25,8 +29,12 @@
 <br>
 :floppy_disk: 프로젝트 백엔드 설계 : https://docs.google.com/spreadsheets/d/1Jypvl2RTCxsNqywAd5BwebdS8CyTALuPkX8BodO0ees/edit#gid=0
 
+
+
 <br>
 <br>
+
+
 
   <h2>:pushpin:기능:pushpin:</h2>
 
@@ -56,31 +64,64 @@
      <br>
      <li>view: https://github.com/yhj3211/marondalGram/blob/develop/src/main/webapp/WEB-INF/jsp/marondalgram/timeline.jsp</li>  
     
+    
+    
    <br>
    <br>
    
+   
+   
    <h2>:tv:기능 구현:tv:</h2>
-   <h3>회원가입![회원가입](https://user-images.githubusercontent.com/77193812/137358584-bb6ccf08-bfce-4b5c-a9c9-53b2cd82f588.gif)</h3>
-   <h3>로그인 후 사이트 둘러보기![로그인 후 포스트 둘러보기](https://user-images.githubusercontent.com/77193812/137358697-82e54835-d61a-4c2f-a69e-64a018997542.gif)</h3> 
-   <h3>글 작성![글 작성](https://user-images.githubusercontent.com/77193812/137358722-6bc7060c-0a88-4d67-8a99-c37e987e24ab.gif)</h3> 
-   <h3>글 삭제![글 삭제](https://user-images.githubusercontent.com/77193812/137358744-186ebbea-0eca-483e-886a-16cdcbe41d18.gif)</h3> 
+   
+   <br>
+   
+   <h3>회원가입
+   <br>
+     (https://user-images.githubusercontent.com/77193812/137358584-bb6ccf08-bfce-4b5c-a9c9-53b2cd82f588.gif)
+   </h3>
+    
+   <br>
+    
+   <h3>로그인 후 사이트 둘러보기
+    <br>
+      (https://user-images.githubusercontent.com/77193812/137358697-82e54835-d61a-4c2f-a69e-64a018997542.gif)
+    </h3> 
+    
+   <br>
+    
+   <h3>글 작성
+   <br>  
+    https://user-images.githubusercontent.com/77193812/137358722-6bc7060c-0a88-4d67-8a99-c37e987e24ab.gif)
+   </h3> 
+   
+   <br>
+   
+   <h3>글 삭제
+   <br>
+    (https://user-images.githubusercontent.com/77193812/137358744-186ebbea-0eca-483e-886a-16cdcbe41d18.gif)
+   </h3> 
    
    
    <br>
    <br>
    
   
+  
   <h2>외부 라이브러리 라이센스</h2>
+    <ul>
      <li>Tomcat https://www.apache.org/licenses/LICENSE-2.0</li>
      <li>Mysql https://www.gnu.org/licenses/gpl-3.0.html</li>
      <li>Spring framework https://www.apache.org/licenses/LICENSE-2.0</li>
      <li>mybatis https://www.apache.org/licenses/LICENSE-2.0</li>
      <li>Bootstrap https://opensource.org/licenses/MIT</li>
      <li>jQuery https://opensource.org/licenses/MIT</li>
+    </ul>
+  <br>
+  <br>
  
   <h2>어떻게 개선할까?<h2>
-    <li>메세지 기능 추가</li>
-    <li>유저 인터페이스를 메인 화면에 띄우기</li>
+    <h3><li>메세지 기능 추가</li></h3>
+    <h3><li>유저 인터페이스를 메인 화면에 띄우기</li></h3>
     ...
   
   
