@@ -156,10 +156,6 @@
 			});
 		*/	
 		
-		setTimeout(function(){
-			location.reload();
-		}, 3000);
-	
 		if(${userId} == "" || ${userId} == null){
 			location.href="/user/sign_in";
 		}
