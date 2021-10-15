@@ -18,38 +18,27 @@
 	<c:import url="/WEB-INF/jsp/include/header.jsp" />
 	<hr>
 	
-		<div> 	
-			<div> 	
-				<nav class="navbar navbar-expand-md navbar-dark bg-dark">
-					<div class="w-75">
-						<ul class="navbar-nav d-flex justify-content-between">	
-							<li class="nav-item"><a class="nav-link" href="/post/main">메인으로</a></li>
-							
-							<li class="nav-item"><a class="nav-link" href="/post/postlist">게시판</a></li>
-							
-							<li class="nav-item"><a class="nav-link" href="#">바로가기</a>
-								<ul class="d-none">
-									<li><a href="https://finance.naver.com/">네이버 금융</a></li>
-									<li><a href="http://finance.daum.net/">다음 금융</a></li>
-									<li><a href="https://coinone.co.kr/?__cf_chl_jschl_tk__=pmd_B37e7nUJNegUbcXnzNtxyoW.H2ohmVAoYpQ4QfQLYJQ-1632993277-0-gqNtZGzNAdCjcnBszQjR">코인원</a></li>
-								</ul>
-							</li>
-					
-							<li class="nav-item"><a class="nav-link" href="/user/takeMessagePage">메세지</a></li>
-						</ul>
-					</div>
-					<div style="width:68%" class="d-flex justify-content-end">
-							<c:if test="${not empty userNickname }">
-								<img src="https://assets.coingecko.com/coins/images/1060/large/icon-icx-logo.png?1547035003" width="30px" class="mr-3"></img>
-								<div class="mr-3 text-white"><a href="/user/mypage" class="mr-1">${userNickname }</a>님</div>			
-								<a href="/user/sign_out">로그아웃</a>			
-							</c:if>
-					</div>
-				</nav>
+	<div> 	
+		<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+			<div class="w-75 top-menu">
+				<ul class="navbar-nav d-flex justify-content-between">	
+					<li class="nav-item"><a class="nav-link" href="/post/main">메인으로</a></li>
+						
+					<li class="nav-item"><a class="nav-link" href="/post/postlist">게시판</a></li>
+						
+					<li class="nav-item"><a class="nav-link" href="/user/takeMessagePage">메세지</a></li>
+				</ul>
 			</div>
-		</div>
-				
-	<form method="post" action="/post/updatePost"> 
+			<div style="width:68%" class="d-flex justify-content-end">
+					<c:if test="${not empty userNickname }">
+						<img src="https://assets.coingecko.com/coins/images/1060/large/icon-icx-logo.png?1547035003" width="30px" class="mr-3"></img>
+						<div class="mr-3 text-white"><a href="/user/mypage" class="mr-1">${userNickname }</a>님</div>			
+						<a href="/user/sign_out">로그아웃</a>			
+					</c:if>
+			</div>
+		</nav>
+	</div>
+	
 	<section class="mt-5 d-flex justify-content-center">
 		<!-- 바깥 틀 -->
 		<div id="inputCard" class="card border border-radius w-75">
@@ -67,7 +56,7 @@
 			
 			<!-- 파일 첨부, 입력 버튼 -->
 			<div class="d-flex justify-content-between mt-3">
-				<div class="ml-3">
+				<div>
 					<input id="fileInput" type="file">
 				</div>
 				
@@ -77,17 +66,18 @@
 					</div>
 				
 					<div>
-						<button id="updatePostBtn" type="button" class="mb-2 mr-2 btn btn-secondary">글 쓰기</button>
+						<button id="inputBtn" type="button" class="btn btn-secondary">글 쓰기</button>
 					</div>
 				</div>
 			</div>
 		</div>
+			
 			<!-- /파일 첨부, 입력 버튼 -->
 		<!-- /바깥 틀 -->
 	</section>
-			</form>
+			
 		<div class="mt-5"></div>	
-		
+			
 		<c:import url="/WEB-INF/jsp/include/footer.jsp" />
 	</div>
 	
@@ -95,15 +85,14 @@
 		$(document).ready(function(){
 			
 			$("#postListBtn").on("click", function(){
-				location.href="/post/postlist"
+				location.href="/post/postlist";
 				
 			});
 			
-			$("#updatePostBtn").on("click", function(){
+			$("#inputBtn").on("click", function(){
 				
-			var id = ${post.id};
 			let content = $("#contentInput").val().trim();
-			let title = $("#titleInput").val().trim();
+			let title = $("#titleInput").val();
 			
 			if(title == "" || title == null){
 				alert("제목을 입력해주세요");
@@ -116,28 +105,27 @@
 			}
 			
 			if($("#fileInput")[0].files.length == 0){
-				$("#fileInput").add("");
+				$("#fileInput").add(" ");
 			}
 			
 			var formData = new FormData();
 			formData.append("file", $("#fileInput")[0].files[0]);
 			formData.append("content", content);
 			formData.append("title", title);
-			formData.append("id", id);
-			
+	
 			$.ajax({
 				enctype: 'multipart/form-data',
-				type:"POST",
-				url:"/post/updatePost",
+				type:"Post",
+				url:"/post/create",
 				processData: false,
 				contentType: false,
 				data:formData,
 				success:function(data){
 					if(data.result == "success"){
-						alert("글 수정이 완료됐습니다");
-						location.href="/post/detail_post?id=${post.id}";
+						alert("글 작성이 완료됐습니다");
+						location.href="/post/postlist";
 					}else{
-						alert("글 수정에 실패했습니다");
+						alert("글 작성에 실패했습니다");
 					}
 				}, error:function(e){
 					alert("시스템 에러");
@@ -148,6 +136,6 @@
 		});
 	
 	</script>
+</body>
+</html>
 	
-	</body>
-	</html>

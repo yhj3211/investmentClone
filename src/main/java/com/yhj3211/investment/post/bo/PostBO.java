@@ -42,9 +42,7 @@ public class PostBO {
 	return postDAO.insertPost(userId, userName, userNickname, title, content, filePath);
 
 }else {
-	int count2 = postDAO.insertPostNoneImage(userId, userName, userNickname, title, content);
-	
-	return count2;
+	return postDAO.insertPostNoneImage(userId, userName, userNickname, title, content);
 }
 }
 
@@ -135,9 +133,7 @@ public class PostBO {
 			}
 		return postDAO.updatePost(title, content, filePath,userId, id);
 		}else {
-			int count2 = postDAO.updatePostNontImage(title, content, userId, id);
-			
-			return count2;
+			return postDAO.updatePostNontImage(title, content, userId, id);
 		}
 	}
 

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,12 +34,11 @@ public class PostRestController {
 	private LikeBO likeBO;
 
 	
-	@PostMapping("create")
+	@PostMapping("/create")
 	public Map<String, String> addPost(@RequestParam("title") String title,
 										@RequestParam("content") String content,
-										 @RequestParam(required = false) MultipartFile file,
+										@RequestParam(required=false) MultipartFile file,
 										HttpServletRequest request){
-
 		
 		HttpSession session = request.getSession();
 		
@@ -58,6 +58,7 @@ public class PostRestController {
 		
 		return result;	
 	}
+
 	
 
 	//좋아요
@@ -112,13 +113,15 @@ public class PostRestController {
 												@RequestParam("content") String content,
 												@RequestParam("id") int id,
 												@RequestParam(required=false) MultipartFile file,
-												HttpServletRequest request){
+												HttpServletRequest request
+												){
 			
 			HttpSession session = request.getSession();
 			int userId = (Integer) session.getAttribute("userId");
 			
 			int count = postBO.updatePost(userId, title, content, file, id);
 			Map<String, String> result = new HashMap<>();
+			
 			
 			if(count == 1) {
 				result.put("result", "success");
@@ -131,7 +134,8 @@ public class PostRestController {
 	//존버 소원 적기
 		@GetMapping("/createHope")
 		public Map<String, String> insertHope(HttpServletRequest request,
-												@RequestParam("content") String content){
+												@RequestParam("content") String content)
+		{
 			
 				Map<String, String> result = new HashMap<>();
 				

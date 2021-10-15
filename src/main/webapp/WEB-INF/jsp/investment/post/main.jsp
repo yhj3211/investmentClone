@@ -22,9 +22,9 @@
 		}
 		
 		#contentBox{
-			overflow:automysql;
+			overflow:auto;
 			min-width:100%;
-			max-height:500px;
+			max-height:400px;
 			border:1px solid;
 			}
 		
@@ -44,20 +44,12 @@
 	
 		<div> 	
 			<nav class="navbar navbar-expand-md navbar-dark bg-dark">
-				<div class="w-75">
+				<div class="w-75 top-menu">
 					<ul class="navbar-nav d-flex justify-content-between">	
 						<li class="nav-item"><a class="nav-link" href="/post/main">메인으로</a></li>
 						
 						<li class="nav-item"><a class="nav-link" href="/post/postlist">게시판</a></li>
 						
-						<li class="nav-item"><a class="nav-link" href="#">바로가기</a>
-							<ul class="d-none">
-								<li><a href="https://finance.naver.com/">네이버 금융</a></li>
-								<li><a href="http://finance.daum.net/">다음 금융</a></li>
-								<li><a href="https://coinone.co.kr/?__cf_chl_jschl_tk__=pmd_B37e7nUJNegUbcXnzNtxyoW.H2ohmVAoYpQ4QfQLYJQ-1632993277-0-gqNtZGzNAdCjcnBszQjR">코인원</a></li>
-							</ul>
-						</li>
-				
 						<li class="nav-item"><a class="nav-link" href="/user/takeMessagePage">메세지</a></li>
 					</ul>
 				</div>
@@ -69,7 +61,7 @@
 						</c:if>
 				</div>
 			</nav>
-	</div>
+		</div>
 		
 		<section>
 			<div>
@@ -202,8 +194,14 @@
 	//	
 		
 	$(document).ready(function(){
+		
 		$("#submitBtn").on("click", function(){
 			var content = $("#textInput").val().trim();
+			
+			if(content == "" || content == null){
+				alert("기도 내용을 입력해주세요");
+				return;
+			}
 			
 			$.ajax({
 				type:"get",

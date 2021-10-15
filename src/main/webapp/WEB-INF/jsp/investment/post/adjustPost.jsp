@@ -18,22 +18,14 @@
 	<c:import url="/WEB-INF/jsp/include/header.jsp" />
 	<hr>
 	
-	<div> 	
+		<div> 	
 			<nav class="navbar navbar-expand-md navbar-dark bg-dark">
-				<div class="w-75">
+				<div class="w-75 top-menu">
 					<ul class="navbar-nav d-flex justify-content-between">	
 						<li class="nav-item"><a class="nav-link" href="/post/main">메인으로</a></li>
 						
 						<li class="nav-item"><a class="nav-link" href="/post/postlist">게시판</a></li>
 						
-						<li class="nav-item"><a class="nav-link" href="#">바로가기</a>
-							<ul class="d-none">
-								<li><a href="https://finance.naver.com/">네이버 금융</a></li>
-								<li><a href="http://finance.daum.net/">다음 금융</a></li>
-								<li><a href="https://coinone.co.kr/?__cf_chl_jschl_tk__=pmd_B37e7nUJNegUbcXnzNtxyoW.H2ohmVAoYpQ4QfQLYJQ-1632993277-0-gqNtZGzNAdCjcnBszQjR">코인원</a></li>
-							</ul>
-						</li>
-				
 						<li class="nav-item"><a class="nav-link" href="/user/takeMessagePage">메세지</a></li>
 					</ul>
 				</div>
@@ -45,9 +37,8 @@
 						</c:if>
 				</div>
 			</nav>
-	</div>
+		</div>
 				
-		<form method="get">
 	<section class="mt-5 d-flex justify-content-center">
 		<!-- 바깥 틀 -->
 		<div id="inputCard" class="card border border-radius w-75">
@@ -65,39 +56,42 @@
 			
 			<!-- 파일 첨부, 입력 버튼 -->
 			<div class="d-flex justify-content-between mt-3">
-				<div>
+				<div class="ml-3">
 					<input id="fileInput" type="file">
 				</div>
 				
 				<div class="d-flex justify-content-between">
 					<div>
-						<button type="button" class="btn mr-3 mb-2 btn-secondary"><a class="text-white" href="/post/postlist">돌아가기</a></button>
+						<button id="postListBtn" type="button" class="mb-2 btn mr-3 btn-secondary">돌아가기</button>
 					</div>
 				
 					<div>
-						<button id="inputBtn" type="button" class="mb-2 btn btn-secondary">글 쓰기</button>
+						<button id="updatePostBtn" type="button" class="mb-2 mr-2 btn btn-secondary">글 쓰기</button>
 					</div>
 				</div>
 			</div>
 		</div>
-			
 			<!-- /파일 첨부, 입력 버튼 -->
 		<!-- /바깥 틀 -->
-	</section>			
-		</form>
-			
+	</section>
 		<div class="mt-5"></div>	
-			
+		
 		<c:import url="/WEB-INF/jsp/include/footer.jsp" />
 	</div>
 	
 	<script>
 		$(document).ready(function(){
 			
-			$("#inputBtn").on("click", function(){
+			$("#postListBtn").on("click", function(){
+				location.href="/post/postlist"
 				
-			var content = $("#contentInput").val().trim();
-			var title = $("#titleInput").val();
+			});
+			
+			$("#updatePostBtn").on("click", function(){
+				
+			var id = ${post.id};
+			let content = $("#contentInput").val().trim();
+			let title = $("#titleInput").val().trim();
 			
 			if(title == "" || title == null){
 				alert("제목을 입력해주세요");
@@ -110,27 +104,28 @@
 			}
 			
 			if($("#fileInput")[0].files.length == 0){
-				$("#fileInput").add("");
+				$("#fileInput").add(" ");
 			}
 			
 			var formData = new FormData();
 			formData.append("file", $("#fileInput")[0].files[0]);
 			formData.append("content", content);
 			formData.append("title", title);
-	
+			formData.append("id", id);
+			
 			$.ajax({
 				enctype: 'multipart/form-data',
-				type:"post",
-				url:"/post/create",
+				type:"Post",
+				url:"/post/updatePost",
 				processData: false,
 				contentType: false,
 				data:formData,
 				success:function(data){
 					if(data.result == "success"){
-						alert("글 작성이 완료됐습니다");
-						location.href="/post/postlist";
+						alert("글 수정이 완료됐습니다");
+						location.href="/post/detail_post?id=${post.id}";
 					}else{
-						alert("글 작성에 실패했습니다");
+						alert("글 수정에 실패했습니다");
 					}
 				}, error:function(e){
 					alert("시스템 에러");
