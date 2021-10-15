@@ -57,7 +57,7 @@ public class PostController {
 			List<PostWithComments> postList = postBO.getPostList(userId, search, keyword);
 			
 			model.addAttribute("postList", postList);
-			return "/investment/postlist";
+			return "/investment/post/postlist";
 		}
 		
 		
@@ -75,14 +75,14 @@ public class PostController {
 			model.addAttribute("post", post);
 			model.addAttribute("commentList", CommentList);
 			
-			return "investment/Post";
+			return "investment/post/Post";
 			
 		}
 
 	//글 작성 페이지
 		@GetMapping("/create_Post")
 		public String createPost() {
-			return "/investment/createpost";
+			return "/investment/post/createpost";
 		}
 		
 	//글 수정 페이지
@@ -94,13 +94,13 @@ public class PostController {
 			model.addAttribute("post", post);
 			
 			
-			return "/investment/adjustPost";
+			return "/investment/post/adjustPost";
 		}
 		
 		
 		@GetMapping("/test")
 		public String test() {
-			return "/investment/test";
+			return "/investment/post/test";
 		}
 		
 	//메인 페이지
@@ -110,7 +110,7 @@ public class PostController {
 			List<Hope> hopeList = hopeBO.selectHopeList();
 			model.addAttribute(hopeList);
 			
-			return "investment/main";
+			return "investment/post/main";
 		}
 		
 }

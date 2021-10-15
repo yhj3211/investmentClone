@@ -35,13 +35,13 @@ public class UserController {
 	//로그인
 	@GetMapping("/sign_in")
 	public String signin_view() {
-		return "/investment/signin";
+		return "/investment/user/signin";
 	}
 	
 	//회원가입
 	@GetMapping("/sign_up")
 	public String signup_view() {
-		return "/investment/signup";
+		return "/investment/user/signup";
 	}
 	
 	//로그 아웃
@@ -55,7 +55,7 @@ public class UserController {
 		session.removeAttribute("userNickname");
 		session.removeAttribute("loginId");
 		
-		return "/investment/signin";
+		return "/investment/user/signin";
 	}
 	
 	//마이페이지
@@ -70,7 +70,7 @@ public class UserController {
 		
 		model.addAttribute("user", user);
 		
-		return "/investment/mypage";
+		return "/investment/user/mypage";
 	}
 	
 	//메세지 보내기 페이지
