@@ -11,7 +11,7 @@
 
 :clipboard: 코인모아
 
-:mag:https://github.com/yhj3211/yhj3211/blob/main/pdf.pdf:mag:
+:mag: https://github.com/yhj3211/yhj3211/blob/main/pdf.pdf :mag:
 
 
 <hr>
