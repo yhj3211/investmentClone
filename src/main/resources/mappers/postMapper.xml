@@ -133,7 +133,7 @@
  			</if>
  			
  			<!-- 검색 조건이 닉네임일 때 -->
- 			<if test="search == 'nickName'">
+ 			<if test="search == 'Nickname'">
  				and `userNickname` like CONCAT('%', #{keyword}, '%')
  			</if>
  			
