@@ -23,12 +23,6 @@
     <li>로그인 기반의 기본적인 기능</li>
   </ul>
   
-:nut_and_bolt: 프로젝트 설계
-
-:floppy_disk: 프로젝트 프론트엔드 설계 : https://ovenapp.io/project/ijIDv6ypUcPb0Zohiz1flgXYN8BrwWYO#f3yZP
-<br>
-:floppy_disk: 프로젝트 백엔드 설계 : https://docs.google.com/spreadsheets/d/1PtbS6l-0ZSjF9ohnJ1pNK9r6j8Otg2BS9RhsTJ52qPY/edit#gid=0
-
 <br>
 <br>
 
