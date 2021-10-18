@@ -86,7 +86,7 @@
      <li>mybatis https://www.apache.org/licenses/LICENSE-2.0</li>
      <li>Bootstrap https://opensource.org/licenses/MIT</li>
      <li>jQuery https://opensource.org/licenses/MIT</li>
-     <li>highcharts</li>
+     <li>highcharts https://github.com/highcharts/highcharts/blob/master/license.txt</li>
     </ul>
   <br>
   <br>
